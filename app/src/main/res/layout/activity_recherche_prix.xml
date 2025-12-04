@@ -3,12 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mainRecherche2"
+    android:id="@+id/RecherchePrix"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context=".RechercheActivity2">
+    tools:context=".RecherchePrixActivity">
 
 
     <TextView
@@ -29,34 +29,47 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/titre_recherche_prod"
+        android:text="@string/titre_recherche_prod_prix"
         android:textSize="18sp" />
 
-    <LinearLayout
+
+    <RadioGroup
+        android:id="@+id/rg_operateurcomparasion"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/rb_egale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Egal" />
+
+            <RadioButton
+                android:id="@+id/rb_inferieur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Inférieur" />
+
+            <RadioButton
+                android:id="@+id/rb_superieur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Supérieur" />
+    </RadioGroup>
+
+
+    <EditText
+        android:id="@+id/et_prix"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="Prix" />
 
-
-        <EditText
-            android:id="@+id/et_nom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text"
-            android:hint="nom" />
-
-        <EditText
-            android:id="@+id/et_reference"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text"
-            android:hint="reference" />
-
-    </LinearLayout>
 
 
     <Button
@@ -80,7 +93,7 @@
 
 
     <TextView
-        android:id="@+id/tv_resultat"
+        android:id="@+id/tv_resultat_recherche_prix"
         android:layout_width="match_parent"
         android:layout_height="180dp" />
 

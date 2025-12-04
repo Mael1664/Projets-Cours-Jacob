@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,13 +34,16 @@ public class RecherchePrixActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                EditText nom = (EditText) findViewById(R.id.et_nom);
-                EditText ref = (EditText) findViewById(R.id.et_reference);
-                if (!nom.getText().toString().isEmpty()){
-                    if (!ref.getText().toString().isEmpty()) {
+                EditText prix = (EditText) findViewById(R.id.et_prix);
+                RadioGroup choixoperateur = (RadioGroup) findViewById(R.id.rg_operateurcomparasion);
+                int operateurCoche = choixoperateur.getCheckedRadioButtonId();
+                log.d("case coches","id case cochee :"+operateurCoche);
+
+
+                    if (!prix.getText().toString().isEmpty()) {
                         TextView resultat = (TextView) findViewById(R.id.tv_resultat);
                         resultat.setTextColor(Color.RED);
-                        resultat.setText("Veuillez remplir un seul champ");
+                        resultat.setText("Veuillez remplir un champ");
                     }
 
                     else

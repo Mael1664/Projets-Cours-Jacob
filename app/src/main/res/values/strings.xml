@@ -9,4 +9,5 @@
     <string name="titre_resultat_recherche">Résultat de la recherche</string>
     <string name="nom_btn_rechercher2">RECHERCHER UN PRODUIT</string>
     <string name="ajouter_un_produit"> Ajouter un produit</string>
+    <string name="titre_recherche_prod_prix">Recherche d\'un produit par prix</string>
 </resources>

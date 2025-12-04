@@ -79,6 +79,9 @@ public class MainActivity extends AppCompatActivity {
                                 String nom = result.getData().getExtras().getString("nom");
                                 Double prix = result.getData().getExtras().getDouble("prix");
                                 Modele.catalogue.add(new Produit(ref, nom, prix));
+                                actualiser();
+                                break;
+
 
 
                         }
