@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Office</string>
+    <string name="titre_list_produits">Liste des produits</string>
+    <string name="nom_btn_actualiser">ACTUALISER LA LISTE</string>
+    <string name="titre_nouveau_produit">Nouveau produit</string>
+    <string name="nom_btn_enregistrer">ENREGISTRER</string>
+    <string name="titre_recherche_prod">Recherche d\'un produit</string>
+    <string name="nom_btn_rechercher">RECHERCHER</string>
+    <string name="titre_resultat_recherche">Résultat de la recherche</string>
+    <string name="nom_btn_rechercher2">RECHERCHER UN PRODUIT</string>
+    <string name="ajouter_un_produit"> Ajouter un produit</string>
+</resources>

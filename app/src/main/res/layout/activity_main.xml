@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".MainActivity">
+
+
+
+
+
+    <TextView
+        android:id="@+id/nomApp"
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:text="@string/app_name" />
+
+
+    <ImageView
+        android:id="@+id/LogoOffice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/logo_office" />
+
+
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/titre_list_produits"
+        android:textSize="18sp" />
+
+
+    <TextView
+        android:id="@+id/tv_catalogue"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
+
+
+
+
+
+    <Button
+        android:id="@+id/b_actualiser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/nom_btn_actualiser" />
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorPrimaryDark" />
+
+
+
+    <Button
+        android:id="@+id/b_rechercher2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/nom_btn_rechercher2" />
+
+
+
+</LinearLayout>

@@ -1,0 +1,47 @@
+# Compiled source #
+###################
+*.apk
+*.ap_
+*.aab
+*.aar
+
+# Files for the Dalvik VM #
+############################
+*.dex
+
+# Generated files #
+###################
+gen/
+out/
+
+# Gradle files #
+################
+.gradle/
+build/
+
+# Local configuration files (user specific) #
+############################################
+local.properties
+.idea/workspace.xml
+.idea/libraries/
+
+# External libraries #
+######################
+libs/
+
+# Windows & Mac files #
+#######################
+.DS_Store
+Thumbs.db
+
+# Android Studio and IDE settings #
+###################################
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Keystore files (for signing apps) #
+####################################
+*.jks
+
+# End of standard Android .gitignore
