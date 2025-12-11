@@ -1,21 +1,32 @@
+
+
 package com.example.office;
+
+
 
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+
 import androidx.appcompat.app.AppCompatActivity;
+
+
 
 
 public class RecherchePrixActivity extends AppCompatActivity {
 
 
+
+
     TextView tv_catalogue;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +40,6 @@ public class RecherchePrixActivity extends AppCompatActivity {
         bouttonRecherche.setOnClickListener(new View.OnClickListener() {
 
 
-
             @Override
             public void onClick(View v) {
 
@@ -37,61 +47,52 @@ public class RecherchePrixActivity extends AppCompatActivity {
                 EditText prix = (EditText) findViewById(R.id.et_prix);
                 RadioGroup choixoperateur = (RadioGroup) findViewById(R.id.rg_operateurcomparasion);
                 int operateurCoche = choixoperateur.getCheckedRadioButtonId();
-                log.d("case coches","id case cochee :"+operateurCoche);
+                Log.d("case coches", "id case cochee :" + operateurCoche);
 
 
-                    if (!prix.getText().toString().isEmpty()) {
-                        TextView resultat = (TextView) findViewById(R.id.tv_resultat);
-                        resultat.setTextColor(Color.RED);
-                        resultat.setText("Veuillez remplir un champ");
-                    }
-
-                    else
-                        rechercherParNom(nom.getText().toString());
-
-
+                if (!prix.getText().toString().isEmpty()) {
+                    rechercheParPrix(prix.getText().toString(), operateurCoche);
+                } else {
+                    TextView resultat = (TextView) findViewById(R.id.tv_resultat_recherche_prix);
+                    resultat.setTextColor(Color.RED);
+                    resultat.setText("Vous devez renseigner un prix pour pouvoir lancer une recherche !");
+                    // le prix est vide
                 }
-
             }
-        });
+        }); // fin setOnClickListener
+    } // fin onCreate
 
-    }
 
-    public void rechercherParNom(String nomARechercher) {
-        TextView resultat = (TextView) findViewById(R.id.tv_resultat);
-        resultat.setTextColor(Color.BLACK);
-        resultat.setText("");
+public void rechercheParPrix(String prixARechercher, int operateurCoche) {
+    TextView resultat = (TextView) findViewById(R.id.tv_resultat_recherche_prix);
+    resultat.setText("");
+    resultat.setTextColor(Color.BLUE);
 
-        for (int i = 0; i < Modele.catalogue.size(); i++) {
-            if (Modele.catalogue.get(i).getNom().contains(nomARechercher)) {
-                resultat.setText(resultat.getText() +
-                        Modele.catalogue.get(i).getRef() + " - " +
-                        Modele.catalogue.get(i).getNom() + " - " +
-                        Modele.catalogue.get(i).getPrix() + " $ \n"
-                );
+
+    for (int i = 0; i < Modele.catalogue.size(); i++) {
+        if (operateurCoche == R.id.rb_egale){
+            if (Modele.catalogue.get(i).getPrix() == Double.parseDouble(prixARechercher)) {
+                integre_ocurance (resultat ,Modele.catalogue.get(i));
             }
         }
-    }
-    public void rechercherParRef(String refARechercher) {
-        TextView resultat = (TextView) findViewById(R.id.tv_resultat);
-        resultat.setTextColor(Color.BLACK);
-        resultat.setText("");
+        else {
+            if (operateurCoche == R.id.rb_inferieur) {
+                if (Modele.catalogue.get(i).getPrix() < Double.parseDouble(prixARechercher)) {
+                    integre_ocurance(resultat, Modele.catalogue.get(i));
+                }
+            }
 
-        for (int i = 0; i < Modele.catalogue.size(); i++) {
-            if (Modele.catalogue.get(i).getRef().equals(refARechercher)) {
-                resultat.setText(resultat.getText() +
-                        Modele.catalogue.get(i).getRef() + " - " +
-                        Modele.catalogue.get(i).getNom() + " - " +
-                        Modele.catalogue.get(i).getPrix() + " $ \n"
-                );
+        else {
+                if (Modele.catalogue.get(i).getPrix() > Double.parseDouble(prixARechercher)) {
+                    integre_ocurance (resultat ,Modele.catalogue.get(i));
+                }
             }
         }
-
     }
 }
 
     public void integre_ocurance (TextView resultat , Produit occuranceAInterger) {
-        resultat.append(article.getNom() + " - " + article.getDescription() + " - " + article.getPrix() + " euros\n");
+        resultat.append(occuranceAInterger.getNom() + " - " + occuranceAInterger.getRef() + " - " + occuranceAInterger.getPrix() + " euros\n");
     }
 } // fin classe RecherchePrixActivity
 
