@@ -90,6 +90,14 @@ public class RecherchePrixActivity extends AppCompatActivity {
     }
 }
 
+    public void integre_ocurance (TextView resultat , Produit occuranceAInterger) {
+        resultat.append(article.getNom() + " - " + article.getDescription() + " - " + article.getPrix() + " euros\n");
+    }
+} // fin classe RecherchePrixActivity
+
+
+
+
 
 
 
