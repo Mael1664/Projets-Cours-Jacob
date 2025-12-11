@@ -92,7 +92,7 @@ public void rechercheParPrix(String prixARechercher, int operateurCoche) {
 }
 
     public void integre_ocurance (TextView resultat , Produit occuranceAInterger) {
-        resultat.append(occuranceAInterger.getNom() + " - " + occuranceAInterger.getRef() + " - " + occuranceAInterger.getPrix() + " euros\n");
+        resultat.append(occuranceAInterger.getNom() + " -- " + occuranceAInterger.getRef() + " - " + occuranceAInterger.getPrix() + " euros\n");
     }
 } // fin classe RecherchePrixActivity
 
