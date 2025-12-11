@@ -31,7 +31,7 @@ public class RecherchePrixActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recherche2);
+        setContentView(R.layout.activity_recherche_prix);
 
         // Modele.init();
 
@@ -70,27 +70,25 @@ public void rechercheParPrix(String prixARechercher, int operateurCoche) {
 
 
     for (int i = 0; i < Modele.catalogue.size(); i++) {
-        if (operateurCoche == R.id.rb_egale){
+        if (operateurCoche == R.id.rb_egale) {
             if (Modele.catalogue.get(i).getPrix() == Double.parseDouble(prixARechercher)) {
-                integre_ocurance (resultat ,Modele.catalogue.get(i));
+                integre_ocurance(resultat, Modele.catalogue.get(i));
             }
-        }
-        else {
+        } else {
             if (operateurCoche == R.id.rb_inferieur) {
                 if (Modele.catalogue.get(i).getPrix() < Double.parseDouble(prixARechercher)) {
                     integre_ocurance(resultat, Modele.catalogue.get(i));
                 }
-            }
-
-        else {
-                if (Modele.catalogue.get(i).getPrix() > Double.parseDouble(prixARechercher)) {
-                    integre_ocurance (resultat ,Modele.catalogue.get(i));
+            } else {
+                if (operateurCoche == R.id.rb_superieur) {
+                    if (Modele.catalogue.get(i).getPrix() > Double.parseDouble(prixARechercher)) {
+                        integre_ocurance(resultat, Modele.catalogue.get(i));
+                    }
                 }
             }
         }
     }
 }
-
     public void integre_ocurance (TextView resultat , Produit occuranceAInterger) {
         resultat.append(occuranceAInterger.getNom() + " -- " + occuranceAInterger.getRef() + " - " + occuranceAInterger.getPrix() + " euros\n");
     }

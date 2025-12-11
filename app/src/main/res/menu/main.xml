@@ -2,6 +2,7 @@
 
 <menu  xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/menu_ajout" android:title="@string/ajouter_un_produit"/>
+    <item android:id="@+id/menu_recherche_prix" android:title="Rechercher par prix"/>
 </menu>
 
 

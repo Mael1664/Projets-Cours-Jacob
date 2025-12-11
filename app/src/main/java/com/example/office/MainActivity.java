@@ -124,6 +124,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    public void rechercheParPrix() {
+        Intent fenrechercheParPrix = new Intent(this, RecherchePrixActivity.class);
+        startActivity(fenrechercheParPrix);
+    }
+
+
+
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
@@ -133,14 +140,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_ajout) {
-            ajouter ();
+            ajouter();
             return true;
         }
-        else
+        if (item.getItemId() == R.id.menu_recherche_prix) {
+            rechercheParPrix();
+            return true;
+        } else {
             return super.onContextItemSelected(item);
+        }
+
+
     }
-
-
-
-
 }
