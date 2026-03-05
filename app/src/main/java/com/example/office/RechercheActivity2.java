@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Spinner;
 import android.widget.LinearLayout;
@@ -78,6 +79,23 @@ public class RechercheActivity2 extends AppCompatActivity {
             }
         });
     };
+
+    private void initSpinner() {
+        lstChoixRecherche.add("Référence");
+        lstChoixRecherche.add("Nom");
+        lstChoixRecherche.add("Prix");
+
+        typeChoixRecherche = findViewById(R.id.spinner);
+
+        ArrayAdapter<String> spinAdapter = new ArrayAdapter<>
+                (this, R.layout.spinner_element);
+
+        for (int i = 0; i < lstChoixRecherche.size(); i++) {
+            spinAdapter.add(lstChoixRecherche.get(i));
+        typeChoixRecherche.setAdapter(spinAdapter);
+        }
+
+    }
 
 
 /*
