@@ -191,13 +191,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void supprimer() {
         int nbProdSuppr = 0;
-        for (int i = Modele.catalogue.size() -1; i <= 0 ; i--) {
+        for (int i = Modele.catalogue.size() -1; i >= 0 ; i--) {
             if (lstCheckBox.get(i).isChecked()) {
                 Modele.catalogue.remove(i);
                 nbProdSuppr++;
             }
         }
-        Toast.makeText(this, nbProduitsSuppr + " produits supprimés", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, nbProdSuppr + " produits supprimés", Toast.LENGTH_SHORT).show();
         actualiser();
     }
 
