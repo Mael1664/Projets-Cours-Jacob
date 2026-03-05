@@ -24,7 +24,7 @@ public class RechercheActivity2 extends AppCompatActivity {
     private EditText champRecherche;
     private ArrayList<String> lstChoixRecherche = new ArrayList<>();
     private Spinner typeChoixRecherche;
-
+    TextView resultatRecherche = findViewById(R.id.tv_resultat);
 
 
     @Override
@@ -36,7 +36,7 @@ public class RechercheActivity2 extends AppCompatActivity {
         initSpinner();
 
         champRecherche = findViewById(R.id.et_champsRecherche);
-        // resultatRecherche = findViewById(R.id.tv_resultat);
+
         layoutRecherche = findViewById(R.id.layoutRecherche);
 
 
@@ -47,7 +47,7 @@ public class RechercheActivity2 extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                rechercheResultat();
+                rechercheResultats();
 
             }
         });
@@ -97,6 +97,39 @@ public class RechercheActivity2 extends AppCompatActivity {
 
     }
 
+    private void rechercheResultats() {
+        resultatRecherche.setText("");
+        String valeurARechercher = champRecherche.getText().toString();
+        switch (typeChoixRecherche.getSelectedItemPosition()){
+            case 0 :
+                for (Produit produit : Modele.catalogue) {
+                    if (produit.getRef().equals(valeurARechercher)) {
+                        resultatRecherche.setText(produit.toString());
+
+                    }
+                }
+                break;
+
+            case 1 :
+            for (Produit produit : Modele.catalogue) {
+                if (produit.getNom().contains(valeurARechercher)) {
+                    resultatRecherche.setText(resultatRecherche.getText().toString()+"\n"+produit.toString());
+
+                }
+            }
+            break;
+
+            case 2 :
+            for (Produit produit : Modele.catalogue) {
+                if (Double.valueOf(valeurARechercher).compareTo(produit.getPrix()) == 0) {
+                    resultatRecherche.setText(resultatRecherche.getText().toString()+"\n"+produit.toString());
+
+                }
+        }
+
+    }
+
+
 
 /*
 
@@ -133,7 +166,7 @@ public class RechercheActivity2 extends AppCompatActivity {
     }   ne sert plus car remplacer par le spinner  */
 
 
-}
+
 
 
 
