@@ -1,6 +1,8 @@
 package com.example.office;
 
-
+import android.text.InputType;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,37 +31,56 @@ public class RechercheActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recherche2);
 
+        // appel de fonction pour peuple le spinner
+        initSpinner();
+
+        champRecherche = findViewById(R.id.et_champsRecherche);
+        // resultatRecherche = findViewById(R.id.tv_resultat);
+        layoutRecherche = findViewById(R.id.layoutRecherche);
+
+
         // Modele.init();
 
         Button bouttonRecherche = (Button) findViewById(R.id.b_rechercher);
-
         bouttonRecherche.setOnClickListener(new View.OnClickListener() {
-
-
 
             @Override
             public void onClick(View v) {
-
-
-                EditText nom = (EditText) findViewById(R.id.et_nom);
-                EditText ref = (EditText) findViewById(R.id.et_reference);
-                if (!nom.getText().toString().isEmpty()){
-                    if (!ref.getText().toString().isEmpty()) {
-                        TextView resultat = (TextView) findViewById(R.id.tv_resultat);
-                        resultat.setTextColor(Color.RED);
-                        resultat.setText("Veuillez remplir un seul champ");
-                    }
-
-                    else
-                        rechercherParNom(nom.getText().toString());
-
-
-                }
+                rechercheResultat();
 
             }
         });
 
-    }
+
+        typeChoixRecherche.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                layoutRecherche.removeAllViewsInLayout();
+                switch (i) {
+                    case 0: // recherche par ref
+                        champRecherche.setHint("Référence du produit");
+                        champRecherche.setInputType(InputType.TYPE_CLASS_TEXT);
+                        break;
+                    case 1: // recherche nom
+                        champRecherche.setHint("Nom du produit");
+                        champRecherche.setInputType(InputType.TYPE_CLASS_TEXT);
+                        break;
+                    case 2: // recherche par prix
+                        champRecherche.setHint("Prix du produit");
+                        champRecherche.setInputType(InputType.TYPE_CLASS_NUMBER);
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    };
+
+
+
 
     public void rechercherParNom(String nomARechercher) {
         TextView resultat = (TextView) findViewById(R.id.tv_resultat);
