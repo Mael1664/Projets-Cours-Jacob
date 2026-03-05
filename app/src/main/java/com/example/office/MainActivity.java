@@ -1,6 +1,6 @@
 package com.example.office;
 
-
+import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.ColorSpace;
@@ -12,7 +12,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.CheckBox;
+import android.widget.Toast;
+
+
 
 
 import androidx.activity.EdgeToEdge;
@@ -27,7 +32,11 @@ import androidx.core.view.WindowInsetsCompat;
 
 
 public class MainActivity extends AppCompatActivity {
-    TextView tv_catalogue ;
+
+    private LinearLayout ll_lstProduits;
+    private ArrayList<CheckBox> lstCheckBox = new ArrayList<>();
+
+
     private ActivityResultLauncher<Intent> activityAvecRetour;
 
 
@@ -38,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
         View maVue = findViewById(R.id.mainLayout);
         registerForContextMenu(maVue);
 
+        ll_lstProduits = findViewById(R.id.ll_lstProduits);
 
-        tv_catalogue = findViewById(R.id.tv_catalogue);
         //charger dans l'appli mobile le catalogue des 4 produits
         Modele.init();
 
@@ -68,6 +77,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        // gestion du bouton supprimer qui supprime les produits cochés
+        Button boutonSupprimer = (Button) findViewById(R.id.b_supprimer);
+        boutonSupprimer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { supprimer(); }
+
+        });
+
+
         activityAvecRetour= registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
@@ -92,12 +110,52 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void actualiser(){
-        tv_catalogue.setText("");
+        // Pour nettoyer le ScrollView avant de le remplir à nouveau
+        // ainsi que la liste des CheckBox
+        ll_lstProduits.removeAllViews();
+        lstCheckBox.clear();
+
         for (int i=0 ; i<Modele.catalogue.size() ; i++) {
+            LinearLayout unLayout = new LinearLayout(getApplicationContext());
+            unLayout.setOrientation(LinearLayout.HORIZONTAL);
+            CheckBox cb_suppr = new CheckBox(getApplicationContext());
+            cb_suppr.setActivated(false);
+            TextView tv_ref = new TextView(getApplicationContext());
+            tv_ref.setText(Modele.catalogue.get(i).getRef());
+            TextView tv_nom = new TextView(getApplicationContext());
+            tv_nom.setText(Modele.catalogue.get(i).getNom());
+            TextView tv_prix = new TextView(getApplicationContext());
+            tv_prix.setText(Modele.catalogue.get(i).getPrix()+" €");
+
+
+            LinearLayout.LayoutParams params = new
+                    LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.weight = 1;
+            tv_ref.setLayoutParams(params);
+            tv_nom.setLayoutParams(params);
+            tv_prix.setLayoutParams(params);
+
+            unLayout.addView(cb_suppr);
+            unLayout.addView(tv_ref);
+            unLayout.addView(tv_nom);
+            unLayout.addView(tv_prix);
+
+            ll_lstProduits.addView(unLayout);
+            lstCheckBox.add(cb_suppr);
+
+
+            /*
+            Ancienne version d'affichage du catalogue dans un TextView
+
             tv_catalogue.setText(tv_catalogue.getText()+Modele.catalogue.get(i).getRef()
                     + " / " + Modele.catalogue.get(i).getNom()
                     + " / " + Modele.catalogue.get(i).getPrix()
                     + " \n ");
+
+             */
+
             Log.d("AfficheCatalogue", Modele.catalogue.get(i).getNom());
         }
     }
@@ -130,6 +188,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+    public void supprimer() {
+        int nbProdSuppr = 0;
+        for (int i = Modele.catalogue.size() -1; i <= 0 ; i--) {
+            if (lstCheckBox.get(i).isChecked()) {
+                Modele.catalogue.remove(i);
+                nbProdSuppr++;
+            }
+        }
+        Toast.makeText(this, nbProduitsSuppr + " produits supprimés", Toast.LENGTH_SHORT).show();
+        actualiser();
+    }
 
 
     @Override

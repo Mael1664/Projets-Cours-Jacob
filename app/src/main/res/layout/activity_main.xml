@@ -38,10 +38,16 @@
         android:textSize="18sp" />
 
 
-    <TextView
-        android:id="@+id/tv_catalogue"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="255dp">
+        <LinearLayout
+            android:id="@+id/ll_lstProduits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </ScrollView>
 
 
 
@@ -59,6 +65,13 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@color/colorPrimaryDark" />
+
+
+    <Button
+        android:id="@+id/b_supprimer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Supprimer" />
 
 
 
