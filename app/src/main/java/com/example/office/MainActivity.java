@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, nbProdSuppr + " produits supprimés", Toast.LENGTH_SHORT).show();
         actualiser();
     }
-
+ //
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
