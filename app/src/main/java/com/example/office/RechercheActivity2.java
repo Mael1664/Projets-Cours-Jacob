@@ -80,7 +80,7 @@ public class RechercheActivity2 extends AppCompatActivity {
     };
 
 
-
+/*
 
     public void rechercherParNom(String nomARechercher) {
         TextView resultat = (TextView) findViewById(R.id.tv_resultat);
@@ -112,7 +112,9 @@ public class RechercheActivity2 extends AppCompatActivity {
             }
         }
 
-    }
+    }   ne sert plus car remplacer par le spinner  */
+
+
 }
 
 
