@@ -8,14 +8,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
+import android.widget.Spinner;
+import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
 
 
 public class RechercheActivity2 extends AppCompatActivity {
 
+    private LinearLayout layoutRecherche;
+    private EditText champRecherche;
+    private ArrayList<String> lstChoixRecherche = new ArrayList<>();
+    private Spinner typeChoixRecherche;
 
-    TextView tv_catalogue;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
